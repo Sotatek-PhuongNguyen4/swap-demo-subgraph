@@ -1,0 +1,32 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: rinkeby
+    source:
+      address: "0xaceddf93435f6c1839427eec903b24746091d469"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AddLiquidity
+        - OwnerChanged
+        - RemoveLiquidity
+        - SwapToken
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: AddLiquidity(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleAddLiquidity
+        - event: OwnerChanged(indexed address,indexed address)
+          handler: handleOwnerChanged
+        - event: RemoveLiquidity(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleRemoveLiquidity
+        - event: SwapToken(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleSwapToken
+      file: ./src/mapping.ts
