@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Swap
@@ -17,8 +17,8 @@ dataSources:
         - SwapEntity
       abis:
         - name: SwapContract
-          file: ./abis/SwapContract.json
+          file: Swap\abis\SwapContract.json
       eventHandlers:
         - event: SwapToken(indexed address,indexed address,indexed address,uint256,uint256)
           handler: handleSwapToken
-      file: ./src/mappings/swapping.ts
+      file: Swap\Swap.wasm
